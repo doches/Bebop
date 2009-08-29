@@ -6,7 +6,8 @@ import sys
 import pygame
 
 sys.path.insert(1, "lib")
-setup(console=['turbulentlake.py'],
+sys.path.insert(1, "screens")
+setup(console=['init.py'],
 	options={
 		"py2exe":{
 			"optimize":2,
