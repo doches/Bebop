@@ -7,7 +7,6 @@ To load sound effects, call `[soundmanager].load_sound()`, passing in the name o
 Music is handled similarly, with the `load_music()` and `start_music(index)` methods. Music is referenced by index, rather than by track name -- to get the index for a track by name use `get_track_number(name)`. You can enable or disable music shuffling via `[soundmanager].shuffle(boolean)`.
 
 ##### A complete example:
-
 <code>
 	# Somewhere early on:
 	SoundManager().init_sound_manager()
