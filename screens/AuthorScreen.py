@@ -16,9 +16,9 @@ class AuthorScreen(AbstractScreen):
 		small_font = self.loader.load_font("slkscr",16)
 		x = self.state.screen_size[0]/2
 		y = self.state.screen_size[1]/2
-		self.labels = [ Label("a game by",med_font,(255,96,96),[x-280,y-30]),
-						Label("Doches",large_font,(255,255,255),[x-180,y-10]),
-						Label("(aka Trevor Fountain)",small_font,(255,255,255),[x-70,y+50])
+		self.labels = [ Label("a rapid framework",med_font,(255,96,96),[x-280,y-30]),
+						Label("Bebop",large_font,(255,255,255),[x-180,y-10]),
+						Label("for game compos",small_font,(255,255,255),[x-70,y+50])
 		 			  ]
 		for label in self.labels:
 			label.goal_alpha = 255
@@ -30,7 +30,7 @@ class AuthorScreen(AbstractScreen):
 		self.start = pygame.time.get_ticks()
 		self.fade_out = self.start + self.ttl*1000
 		self.alive = True
-		self.sound.start_music(1)
+		self.sound.start_music(0)
 		
 	def update(self):
 		AbstractScreen.update(self)
