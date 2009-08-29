@@ -14,21 +14,14 @@ class SoundManager:
 		self.sounds = {}
 		self.music = []
 		self.music_filenames = []
-		# load wavs
-		for name in []:
-			self.sounds[name] = pygame.mixer.Sound(os.path.join("res","audio",name+".wav"))
-		# load oggs
-		for name in []:
-			self.sounds[name] = pygame.mixer.Sound(os.path.join("res","audio",name+".ogg"))
-		# load music
-		for name in []:
-			self.load_music_from_ogg(name)
 		self.playing = None
 		self.tick = 0
 		self.stop_at = 0
-		self.music_on = False
-		# custom stuff
-		#self.sounds["button"].set_volume(0.2)
+		self.shuffle = False
+	
+	# Load sounds
+	def load_sound(self,name,format="ogg"):
+		self.sounds[name] = pygame.mixer.Sound(os.path.join("res","audio",name+"."+format))
 	
 	# load music
 	def load_music_from_ogg(self,name):
@@ -59,7 +52,6 @@ class SoundManager:
 		return None
 	
 	# Force the music to start, with an optional track number.
-	# Enables shuffling
 	def start_music(self,i=None):
 		if i == None:
 			i = random.randint(0,len(self.music)-1)
@@ -70,14 +62,17 @@ class SoundManager:
 		self.playing = self.music[i]
 		self.playing.play()
 		self.stop_at = time() + self.playing.get_length() + 1
-		self.music_on = True
+
+	# Enables shuffling
+	def shuffle(self,status=True):
+		self.shuffle = status
 	
 	# Do music shuffle, if it's time for that and self.music_on is True
 	def update(self):
 		self.tick += 1
 		if self.tick > 60:
 			self.tick = 0
-			if self.music_on and not self.playing or time() > self.stop_at:
+			if self.shuffle and not self.playing or time() > self.stop_at:
 				self.playing = self.music[random.randint(0,len(self.music)-1)]
 				self.playing.play()
 				self.stop_at = time() + self.playing.get_length() + 1
